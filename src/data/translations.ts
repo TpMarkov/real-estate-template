@@ -3,17 +3,17 @@ import { Translation } from "@/types";
 export const translations: Record<string, Translation> = {
   en: {
     // Navigation
-    "nav.home": "Home",
-    "nav.properties": "Properties",
-    "nav.buy": "Buy",
-    "nav.rent": "Rent",
-    "nav.sell": "Sell",
-    "nav.about": "About Us",
-    "nav.contact": "Contact",
-    "nav.blog": "Blog",
-    "nav.agents": "Our Agents",
-    "nav.login": "Login",
-    "nav.register": "Register",
+    home: "Home",
+    properties: "Properties",
+    buy: "Buy",
+    rent: "Rent",
+    sell: "Sell",
+    about: "About Us",
+    contact: "Contact",
+    blog: "Blog",
+    agents: "Our Agents",
+    login: "Login",
+    register: "Register",
 
     // Hero Section
     "hero.title": "Find Your Dream Property in Bulgaria",
@@ -24,6 +24,7 @@ export const translations: Record<string, Translation> = {
 
     // Search
     "search.placeholder": "Search by location, property type...",
+    location: "Location",
     "search.location": "Location",
     "search.type": "Property Type",
     "search.price": "Price Range",
@@ -153,17 +154,17 @@ export const translations: Record<string, Translation> = {
   },
   bg: {
     // Navigation
-    "nav.home": "Начало",
-    "nav.properties": "Имоти",
-    "nav.buy": "Купува",
-    "nav.rent": "Наема",
-    "nav.sell": "Продава",
-    "nav.about": "За нас",
-    "nav.contact": "Контакти",
-    "nav.blog": "Блог",
-    "nav.agents": "Нашите агенти",
-    "nav.login": "Вход",
-    "nav.register": "Регистрация",
+    home: "Начало",
+    properties: "Имоти",
+    buy: "Купува",
+    rent: "Наема",
+    sell: "Продава",
+    about: "За нас",
+    contact: "Контакти",
+    blog: "Блог",
+    agents: "Нашите агенти",
+    login: "Вход",
+    register: "Регистрация",
 
     // Hero Section
     "hero.title": "Намерете Вашата Мечтана Имот в България",
@@ -174,6 +175,7 @@ export const translations: Record<string, Translation> = {
 
     // Search
     "search.placeholder": "Търсете по локация, тип имот...",
+    location: "Локация",
     "search.location": "Локация",
     "search.type": "Тип Имот",
     "search.price": "Ценови диапазон",

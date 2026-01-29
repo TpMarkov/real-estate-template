@@ -140,7 +140,7 @@ const SearchBar: React.FC = () => {
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
-          {t("nav.buy")}
+          {t("buy")}
         </button>
         <button
           onClick={() => setStatus("for_rent")}
@@ -150,7 +150,7 @@ const SearchBar: React.FC = () => {
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
-          {t("nav.rent")}
+          {t("rent")}
         </button>
         <button
           onClick={() => router.push("/properties")}

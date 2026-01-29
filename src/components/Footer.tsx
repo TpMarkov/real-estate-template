@@ -10,15 +10,15 @@ const Footer: React.FC = () => {
 
   const footerLinks = {
     properties: [
-      { href: "/properties?status=for_sale", label: t("nav.buy") },
-      { href: "/properties?status=for_rent", label: t("nav.rent") },
+      { href: "/properties?status=for_sale", label: t("buy") },
+      { href: "/properties?status=for_rent", label: t("rent") },
       { href: "/properties?type=villa", label: t("type.villa") },
       { href: "/properties?type=apartment", label: t("type.apartment") },
     ],
     company: [
-      { href: "/about", label: t("nav.about") },
-      { href: "/contact", label: t("nav.contact") },
-      { href: "/agents", label: t("nav.agents") },
+      { href: "/about", label: t("about") },
+      { href: "/contact", label: t("contact") },
+      { href: "/agents", label: t("agents") },
     ],
     legal: [
       { href: "/privacy", label: t("footer.privacy") },
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand & Newsletter */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -50,14 +50,14 @@ const Footer: React.FC = () => {
               <p className="text-sm font-medium mb-3">
                 {t("footer.newsletter")}
               </p>
-              <div className="flex space-x-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input
                   type="email"
                   placeholder={t("footer.newsletter_placeholder")}
                   className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary-500"
                 />
                 <button className="bg-primary-600 hover:bg-primary-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                  {t("footer.subscribe")}
+                  {t("subscribe")}
                 </button>
               </div>
             </div>
@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
             <h3 className="font-semibold text-lg mb-4">
               {t("footer.properties")}
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {footerLinks.properties.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
             transition={{ delay: 0.2 }}
           >
             <h3 className="font-semibold text-lg mb-4">{t("footer.about")}</h3>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -117,7 +117,7 @@ const Footer: React.FC = () => {
             transition={{ delay: 0.3 }}
           >
             <h3 className="font-semibold text-lg mb-4">{t("contact.info")}</h3>
-            <ul className="space-y-3 text-gray-400">
+            <ul className="space-y-4 text-gray-400">
               <li className="flex items-start space-x-3">
                 <svg
                   className="w-5 h-5 mt-0.5 flex-shrink-0"

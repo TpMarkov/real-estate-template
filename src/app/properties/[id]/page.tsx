@@ -5,22 +5,482 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import { getPropertyById } from "@/data/properties";
 import { Property } from "@/types";
+
+// All properties data hardcoded to avoid import issues
+const allProperties: Property[] = [
+  {
+    id: "prop-1",
+    title: {
+      en: "Luxury 3-Bedroom Apartment in Sofia",
+      bg: "Луксозен 3-стаен апартамент в София",
+    },
+    description: {
+      en: "Stunning luxury apartment in the heart of Sofia. This beautifully renovated property features high ceilings, original parquet flooring, and modern amenities.",
+      bg: "Зашеметяващ луксозен апартамент в центъра на София. Този красиво реновиран имот разполага с високи тавани, оригинален паркет и модерни удобства.",
+    },
+    price: 450000,
+    pricePerSqm: 4500,
+    type: "apartment",
+    status: "for_sale",
+    location: "sofia",
+    address: "23 Vitosha Boulevard, Sofia 1000",
+    area: 100,
+    bedrooms: 3,
+    bathrooms: 2,
+    floor: 3,
+    totalFloors: 6,
+    yearBuilt: 2018,
+    features: [
+      "Air Conditioning",
+      "Central Heating",
+      "Elevator",
+      "Balcony",
+      "Fireplace",
+    ],
+    amenities: [
+      "24/7 Security",
+      "Underground Parking",
+      "Garden",
+      "Gym",
+      "Swimming Pool",
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&h=800&fit=crop",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&h=800&fit=crop",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&h=800&fit=crop",
+    ],
+    thumbnail:
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop",
+    agent: {
+      id: "agent-1",
+      name: "Ivan Petrov",
+      email: "ivan.petrov@example.com",
+      phone: "+359 888 123 456",
+      photo:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop",
+      bio: { en: "Experienced agent", bg: "Опитен агент" },
+      languages: ["English", "Bulgarian"],
+      properties: 45,
+    },
+    createdAt: "2024-01-15T10:00:00Z",
+    updatedAt: "2024-01-20T14:30:00Z",
+    featured: true,
+    coordinates: { lat: 42.6975, lng: 23.3241 },
+  },
+  {
+    id: "prop-2",
+    title: {
+      en: "Modern Villa with Pool in Varna",
+      bg: "Модерна вила с басейн във Варна",
+    },
+    description: {
+      en: "Beautiful modern villa located in a quiet residential area of Varna, just 500m from the beach.",
+      bg: "Красива модерна вила в тих жилищен район на Варна, само на 500 метра от плажа.",
+    },
+    price: 850000,
+    pricePerSqm: 2429,
+    type: "villa",
+    status: "for_sale",
+    location: "varna",
+    address: "45 Sea View Street, Varna 9000",
+    area: 350,
+    bedrooms: 4,
+    bathrooms: 3,
+    floor: 2,
+    totalFloors: 3,
+    yearBuilt: 2020,
+    features: ["Swimming Pool", "Garden", "Garage", "Smart Home"],
+    amenities: ["Private Beach Access", "Outdoor Kitchen", "BBQ Area"],
+    images: [
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&h=800&fit=crop",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=800&fit=crop",
+    ],
+    thumbnail:
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&h=400&fit=crop",
+    agent: {
+      id: "agent-2",
+      name: "Maria Georgieva",
+      email: "maria.georgieva@example.com",
+      phone: "+359 889 234 567",
+      photo:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+      bio: { en: "Bilingual agent", bg: "Двуезичен агент" },
+      languages: ["English", "Bulgarian"],
+      properties: 38,
+    },
+    createdAt: "2024-01-10T08:00:00Z",
+    updatedAt: "2024-01-18T11:00:00Z",
+    featured: true,
+    coordinates: { lat: 43.2141, lng: 27.9147 },
+  },
+  {
+    id: "prop-3",
+    title: {
+      en: "Cozy Studio in Sunny Beach",
+      bg: "Уютно студио в Слънчев бряг",
+    },
+    description: {
+      en: "Perfect investment opportunity! This cozy studio apartment is located in the popular Sunny Beach resort.",
+      bg: "Перфектна инвестиционна възможност! Този уютен студио апартамент се намира в популярния курорт Слънчев бряг.",
+    },
+    price: 45000,
+    pricePerSqm: 1125,
+    type: "studio",
+    status: "for_sale",
+    location: "sunny_beach",
+    address: "Apartment 205, Sunny Beach 8240",
+    area: 40,
+    bedrooms: 1,
+    bathrooms: 1,
+    floor: 2,
+    totalFloors: 6,
+    yearBuilt: 2015,
+    features: ["Balcony", "Sea View", "Air Conditioning"],
+    amenities: ["Swimming Pool", "Fitness Center", "Parking"],
+    images: [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&h=800&fit=crop",
+    ],
+    thumbnail:
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop",
+    agent: {
+      id: "agent-3",
+      name: "Dimitar Stoyanov",
+      email: "dimitar.stoyanov@example.com",
+      phone: "+359 887 345 678",
+      photo:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+      bio: { en: "Commercial expert", bg: "Търговски експерт" },
+      languages: ["English", "Bulgarian"],
+      properties: 52,
+    },
+    createdAt: "2024-01-05T09:00:00Z",
+    updatedAt: "2024-01-15T16:00:00Z",
+    featured: true,
+    coordinates: { lat: 42.6506, lng: 27.7078 },
+  },
+  {
+    id: "prop-4",
+    title: {
+      en: "Traditional House in Veliko Tarnovo",
+      bg: "Традиционна къща във Велико Търново",
+    },
+    description: {
+      en: "Authentic Bulgarian house located in the historic town of Veliko Tarnovo.",
+      bg: "Автентична българска къща в историческия Велико Търново.",
+    },
+    price: 280000,
+    pricePerSqm: 1867,
+    type: "house",
+    status: "for_sale",
+    location: "veliko_tarnovo",
+    address: "78 Samovodska Street, Veliko Tarnovo 5000",
+    area: 150,
+    bedrooms: 5,
+    bathrooms: 3,
+    floor: 2,
+    totalFloors: 2,
+    yearBuilt: 1890,
+    features: ["Fireplace", "Courtyard", "Mountain View"],
+    amenities: ["Garden", "Parking", "Storage"],
+    images: [
+      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&h=800&fit=crop",
+    ],
+    thumbnail:
+      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&h=400&fit=crop",
+    agent: {
+      id: "agent-1",
+      name: "Ivan Petrov",
+      email: "ivan.petrov@example.com",
+      phone: "+359 888 123 456",
+      photo:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop",
+      bio: { en: "Experienced agent", bg: "Опитен агент" },
+      languages: ["English", "Bulgarian"],
+      properties: 45,
+    },
+    createdAt: "2024-01-08T12:00:00Z",
+    updatedAt: "2024-01-16T09:30:00Z",
+    featured: false,
+    coordinates: { lat: 43.0756, lng: 25.6172 },
+  },
+  {
+    id: "prop-5",
+    title: {
+      en: "Luxury Penthouse in Plovdiv",
+      bg: "Луксозен пентхаус в Пловдив",
+    },
+    description: {
+      en: "Exclusive penthouse apartment in the center of Plovdiv, offering panoramic views of the old town.",
+      bg: "Ексклузивен пентхаус апартамент в центъра на Пловдив, предлагащ панорамен изглед към Стария град.",
+    },
+    price: 520000,
+    pricePerSqm: 5200,
+    type: "apartment",
+    status: "for_sale",
+    location: "plovdiv",
+    address: "12 Kamenitza Street, Plovdiv 4000",
+    area: 100,
+    bedrooms: 3,
+    bathrooms: 2,
+    floor: 12,
+    totalFloors: 12,
+    yearBuilt: 2021,
+    features: ["Panoramic Views", "Private Terrace", "Smart Home"],
+    amenities: ["Underground Parking", "Rooftop Garden", "Gym"],
+    images: [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=800&fit=crop",
+    ],
+    thumbnail:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop",
+    agent: {
+      id: "agent-2",
+      name: "Maria Georgieva",
+      email: "maria.georgieva@example.com",
+      phone: "+359 889 234 567",
+      photo:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+      bio: { en: "Bilingual agent", bg: "Двуезичен агент" },
+      languages: ["English", "Bulgarian"],
+      properties: 38,
+    },
+    createdAt: "2024-01-12T14:00:00Z",
+    updatedAt: "2024-01-19T10:00:00Z",
+    featured: true,
+    coordinates: { lat: 42.1354, lng: 24.7453 },
+  },
+  {
+    id: "prop-6",
+    title: {
+      en: "Ski Chalet in Bansko",
+      bg: "Ски Шале в Банско",
+    },
+    description: {
+      en: "Beautiful ski chalet located in the premier ski resort of Bansko.",
+      bg: "Красиво ски шале в премиерния ски курорт Банско.",
+    },
+    price: 320000,
+    pricePerSqm: 1600,
+    type: "villa",
+    status: "for_sale",
+    location: "bansko",
+    address: "25 Pirin Street, Bansko 2770",
+    area: 200,
+    bedrooms: 4,
+    bathrooms: 3,
+    floor: 2,
+    totalFloors: 3,
+    yearBuilt: 2017,
+    features: ["Fireplace", "Mountain View", "Garden"],
+    amenities: ["Near Ski Lift", "Sauna", "Hot Tub"],
+    images: [
+      "https://images.unsplash.com/photo-1542718610-a1d656d1884c?w=1200&h=800&fit=crop",
+    ],
+    thumbnail:
+      "https://images.unsplash.com/photo-1542718610-a1d656d1884c?w=600&h=400&fit=crop",
+    agent: {
+      id: "agent-3",
+      name: "Dimitar Stoyanov",
+      email: "dimitar.stoyanov@example.com",
+      phone: "+359 887 345 678",
+      photo:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+      bio: { en: "Commercial expert", bg: "Търговски експерт" },
+      languages: ["English", "Bulgarian"],
+      properties: 52,
+    },
+    createdAt: "2024-01-03T11:00:00Z",
+    updatedAt: "2024-01-14T15:00:00Z",
+    featured: false,
+    coordinates: { lat: 41.8373, lng: 23.4881 },
+  },
+  {
+    id: "prop-7",
+    title: {
+      en: "Office in Sofia Business Park",
+      bg: "Офис в София Бизнес Парк",
+    },
+    description: {
+      en: "Premium office space available in the prestigious Sofia Business Park.",
+      bg: "Премиум офис пространство в престижния София Бизнес Парк.",
+    },
+    price: 2500,
+    pricePerSqm: 17,
+    type: "office",
+    status: "for_rent",
+    location: "sofia",
+    address: "Office 501, Business Tower, Sofia 1766",
+    area: 150,
+    bedrooms: 0,
+    bathrooms: 2,
+    floor: 5,
+    totalFloors: 10,
+    yearBuilt: 2019,
+    features: ["Open Plan", "Meeting Rooms", "Parking"],
+    amenities: ["Security", "Central AC", "Elevator"],
+    images: [
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=800&fit=crop",
+    ],
+    thumbnail:
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop",
+    agent: {
+      id: "agent-3",
+      name: "Dimitar Stoyanov",
+      email: "dimitar.stoyanov@example.com",
+      phone: "+359 887 345 678",
+      photo:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+      bio: { en: "Commercial expert", bg: "Търговски експерт" },
+      languages: ["English", "Bulgarian"],
+      properties: 52,
+    },
+    createdAt: "2024-01-06T13:00:00Z",
+    updatedAt: "2024-01-17T08:00:00Z",
+    featured: false,
+    coordinates: { lat: 42.6525, lng: 23.3541 },
+  },
+  {
+    id: "prop-8",
+    title: {
+      en: "Beachfront Apartment in Golden Sands",
+      bg: "Апартамент на плажа в Златни пясъци",
+    },
+    description: {
+      en: "Spectacular beachfront apartment in the famous Golden Sands resort.",
+      bg: "Спектакълен апартамент на плажа в прочутия курорт Златни пясъци.",
+    },
+    price: 195000,
+    pricePerSqm: 3250,
+    type: "apartment",
+    status: "for_sale",
+    location: "golden_sands",
+    address: "Apartment 1801, Golden Sands 9007",
+    area: 60,
+    bedrooms: 2,
+    bathrooms: 2,
+    floor: 18,
+    totalFloors: 20,
+    yearBuilt: 2016,
+    features: ["Beach Access", "Sea View", "Balcony"],
+    amenities: ["Multiple Pools", "Restaurant", "Spa"],
+    images: [
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=800&fit=crop",
+    ],
+    thumbnail:
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop",
+    agent: {
+      id: "agent-2",
+      name: "Maria Georgieva",
+      email: "maria.georgieva@example.com",
+      phone: "+359 889 234 567",
+      photo:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+      bio: { en: "Bilingual agent", bg: "Двуезичен агент" },
+      languages: ["English", "Bulgarian"],
+      properties: 38,
+    },
+    createdAt: "2024-01-09T10:00:00Z",
+    updatedAt: "2024-01-18T14:00:00Z",
+    featured: true,
+    coordinates: { lat: 43.2833, lng: 28.0333 },
+  },
+  {
+    id: "prop-9",
+    title: {
+      en: "Commercial Property in Burgas",
+      bg: "Търговски имот в Бургас",
+    },
+    description: {
+      en: "Excellent commercial opportunity in the heart of Burgas.",
+      bg: "Отлична търговска възможност в сърцето на Бургас.",
+    },
+    price: 450000,
+    pricePerSqm: 1500,
+    type: "commercial",
+    status: "for_sale",
+    location: "burgas",
+    address: "45 Alexandrovska Street, Burgas 8000",
+    area: 300,
+    bedrooms: 0,
+    bathrooms: 2,
+    floor: 1,
+    totalFloors: 3,
+    yearBuilt: 1995,
+    features: ["High Ceilings", "Large Windows"],
+    amenities: ["Storage", "Parking Nearby"],
+    images: [
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=800&fit=crop",
+    ],
+    thumbnail:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop",
+    agent: {
+      id: "agent-3",
+      name: "Dimitar Stoyanov",
+      email: "dimitar.stoyanov@example.com",
+      phone: "+359 887 345 678",
+      photo:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+      bio: { en: "Commercial expert", bg: "Търговски експерт" },
+      languages: ["English", "Bulgarian"],
+      properties: 52,
+    },
+    createdAt: "2024-01-07T15:00:00Z",
+    updatedAt: "2024-01-16T12:00:00Z",
+    featured: false,
+    coordinates: { lat: 42.5048, lng: 27.4626 },
+  },
+  {
+    id: "prop-10",
+    title: {
+      en: "Building Land in Ruse",
+      bg: "Строителен терен в Русе",
+    },
+    description: {
+      en: "Prime building land available in the beautiful city of Ruse.",
+      bg: "Премиерен строителен терен в красивия град Русе.",
+    },
+    price: 120000,
+    pricePerSqm: 60,
+    type: "land",
+    status: "for_sale",
+    location: "ruse",
+    address: "Land Plot 12, Ruse 7000",
+    area: 2000,
+    bedrooms: 0,
+    bathrooms: 0,
+    yearBuilt: undefined,
+    features: ["Flat Terrain", "Utilities Available"],
+    amenities: ["Near River", "Quiet Area"],
+    images: [
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&h=800&fit=crop",
+    ],
+    thumbnail:
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop",
+    agent: {
+      id: "agent-1",
+      name: "Ivan Petrov",
+      email: "ivan.petrov@example.com",
+      phone: "+359 888 123 456",
+      photo:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop",
+      bio: { en: "Experienced agent", bg: "Опитен агент" },
+      languages: ["English", "Bulgarian"],
+      properties: 45,
+    },
+    createdAt: "2024-01-04T09:00:00Z",
+    updatedAt: "2024-01-13T11:00:00Z",
+    featured: false,
+    coordinates: { lat: 43.8357, lng: 25.9666 },
+  },
+];
 
 const PropertyDetailPage: React.FC = () => {
   const { t, language } = useLanguage();
   const params = useParams();
-  const [property, setProperty] = useState<Property | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showLightbox, setShowLightbox] = useState(false);
 
-  useEffect(() => {
-    if (params.id) {
-      const foundProperty = getPropertyById(params.id as string);
-      setProperty(foundProperty || null);
-    }
-  }, [params.id]);
+  const property = allProperties.find((p) => p.id === params.id);
 
   if (!property) {
     return (
@@ -42,7 +502,6 @@ const PropertyDetailPage: React.FC = () => {
         maximumFractionDigits: 0,
       },
     ).format(price);
-
     return status === "for_rent" ? `${formatted}/mo` : formatted;
   };
 
@@ -52,10 +511,6 @@ const PropertyDetailPage: React.FC = () => {
         return t("status.for_sale");
       case "for_rent":
         return t("status.for_rent");
-      case "sold":
-        return t("status.sold");
-      case "reserved":
-        return t("status.reserved");
       default:
         return status;
     }
@@ -67,10 +522,6 @@ const PropertyDetailPage: React.FC = () => {
         return "bg-green-500";
       case "for_rent":
         return "bg-blue-500";
-      case "sold":
-        return "bg-red-500";
-      case "reserved":
-        return "bg-yellow-500";
       default:
         return "bg-gray-500";
     }
@@ -113,7 +564,6 @@ const PropertyDetailPage: React.FC = () => {
           ))}
         </div>
 
-        {/* View All Photos Button */}
         <button
           onClick={() => setShowLightbox(true)}
           className="absolute top-4 right-4 bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
@@ -211,9 +661,7 @@ const PropertyDetailPage: React.FC = () => {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -413,7 +861,7 @@ const PropertyDetailPage: React.FC = () => {
                   <div>
                     <p className="font-semibold">{property.agent.name}</p>
                     <p className="text-sm text-gray-500">
-                      {property.agent.properties} {t("nav.properties")}
+                      {property.agent.properties} {t("properties")}
                     </p>
                   </div>
                 </div>
@@ -452,65 +900,6 @@ const PropertyDetailPage: React.FC = () => {
                 <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 rounded-lg transition-colors">
                   {t("property.inquire")}
                 </button>
-              </motion.div>
-
-              {/* Quick Actions */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="bg-white rounded-xl shadow-lg p-6"
-              >
-                <div className="flex space-x-2">
-                  <button className="flex-1 flex items-center justify-center py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                      />
-                    </svg>
-                    {t("property.save")}
-                  </button>
-                  <button className="flex-1 flex items-center justify-center py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
-                      />
-                    </svg>
-                    {t("property.share")}
-                  </button>
-                  <button className="flex-1 flex items-center justify-center py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
-                      />
-                    </svg>
-                    {t("property.print")}
-                  </button>
-                </div>
               </motion.div>
             </div>
           </div>

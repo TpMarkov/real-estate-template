@@ -163,7 +163,7 @@ const FeaturedProperties: React.FC = () => {
             {t("hero.featured")}
           </span>
           <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2 mb-4">
-            {t("hero.featured")} {t("nav.properties")}
+            {t("hero.featured")} {t("properties")}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Discover our handpicked selection of premium properties across
@@ -198,7 +198,7 @@ const FeaturedProperties: React.FC = () => {
             href="/properties"
             className="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
           >
-            {t("common.view_all")} {t("nav.properties")}
+            {t("common.view_all")} {t("properties")}
             <svg
               className="w-5 h-5 ml-2"
               fill="none"

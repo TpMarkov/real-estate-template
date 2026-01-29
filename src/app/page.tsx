@@ -248,7 +248,7 @@ const HomePage: React.FC = () => {
                 href="/properties"
                 className="bg-primary-500 text-white font-semibold px-8 py-3 rounded-lg hover:bg-primary-400 transition-colors border border-white/30"
               >
-                {t("nav.properties")}
+                {t("properties")}
               </a>
             </div>
           </motion.div>

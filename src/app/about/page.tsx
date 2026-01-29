@@ -167,7 +167,7 @@ const AboutPage: React.FC = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
-              {t("nav.agents")}
+              {t("agents")}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Meet our team of experienced real estate professionals
