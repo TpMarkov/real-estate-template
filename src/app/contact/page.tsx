@@ -15,6 +15,9 @@ const ContactPage: React.FC = () => {
   });
   const [submitted, setSubmitted] = useState(false);
 
+  //TODO: Remove console.log
+  console.log("Testing something");
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
