@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { Property, PropertyType, PropertyLocation } from "@/types";
 import PropertyCard from "@/components/PropertyCard";
 
-// Hardcoded properties data to avoid import issues
+// Hardcoded properties data
 const propertiesData: Property[] = [
   {
     id: "prop-1",
@@ -87,9 +87,9 @@ const propertiesData: Property[] = [
       id: "agent-2",
       name: "Maria Georgieva",
       email: "maria.georgieva@example.com",
-      phone: "+359 889 234 567",
+      phone: "+359 889",
       photo:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+        "https://images 234 567.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
       bio: { en: "Bilingual agent", bg: "Двуезичен агент" },
       languages: ["English", "Bulgarian"],
       properties: 38,
@@ -459,7 +459,8 @@ const propertiesData: Property[] = [
   },
 ];
 
-const PropertiesPage: React.FC = () => {
+// Properties content wrapped in Suspense
+const PropertiesContent: React.FC = () => {
   const { t } = useLanguage();
   const searchParams = useSearchParams();
 
@@ -483,12 +484,12 @@ const PropertiesPage: React.FC = () => {
   const propertyTypes: { value: PropertyType | ""; label: string }[] = [
     { value: "", label: t("search.type") },
     { value: "apartment", label: t("type.apartment") },
-    { value: "house", label: t("house") },
-    { value: "villa", label: t("villa") },
-    { value: "studio", label: t("studio") },
-    { value: "office", label: t("office") },
-    { value: "land", label: t("land") },
-    { value: "commercial", label: t("commercial") },
+    { value: "house", label: t("type.house") },
+    { value: "villa", label: t("type.villa") },
+    { value: "studio", label: t("type.studio") },
+    { value: "office", label: t("type.office") },
+    { value: "land", label: t("type.land") },
+    { value: "commercial", label: t("type.commercial") },
   ];
 
   const locations: { value: PropertyLocation | ""; label: string }[] = [
@@ -523,7 +524,6 @@ const PropertiesPage: React.FC = () => {
       return true;
     });
 
-    // Sort results
     switch (sortBy) {
       case "price_low":
         results.sort((a, b) => a.price - b.price);
@@ -831,6 +831,41 @@ const PropertiesPage: React.FC = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+// Loading skeleton
+const PropertiesLoading: React.FC = () => (
+  <div className="min-h-screen bg-gray-50 pt-20">
+    <div className="bg-gradient-to-r from-primary-600 to-primary-800 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="h-10 bg-white/20 rounded w-48 animate-pulse mb-4" />
+        <div className="h-6 bg-white/20 rounded w-32 animate-pulse" />
+      </div>
+    </div>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div
+            key={i}
+            className="bg-white rounded-xl shadow-lg p-4 animate-pulse"
+          >
+            <div className="h-48 bg-gray-200 rounded-lg mb-4" />
+            <div className="h-6 bg-gray-200 rounded w-3/4 mb-2" />
+            <div className="h-4 bg-gray-200 rounded w-1/2" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+// Main page component with Suspense
+const PropertiesPage: React.FC = () => {
+  return (
+    <Suspense fallback={<PropertiesLoading />}>
+      <PropertiesContent />
+    </Suspense>
   );
 };
 
