@@ -1,0 +1,309 @@
+import { Translation } from "@/types";
+
+export const translations: Record<string, Translation> = {
+  en: {
+    // Navigation
+    "nav.home": "Home",
+    "nav.properties": "Properties",
+    "nav.buy": "Buy",
+    "nav.rent": "Rent",
+    "nav.sell": "Sell",
+    "nav.about": "About Us",
+    "nav.contact": "Contact",
+    "nav.blog": "Blog",
+    "nav.agents": "Our Agents",
+    "nav.login": "Login",
+    "nav.register": "Register",
+
+    // Hero Section
+    "hero.title": "Find Your Dream Property in Bulgaria",
+    "hero.subtitle":
+      "Discover the best real estate opportunities in Bulgaria with our extensive portfolio of properties",
+    "hero.cta": "Search Properties",
+    "hero.featured": "Featured Properties",
+
+    // Search
+    "search.placeholder": "Search by location, property type...",
+    "search.location": "Location",
+    "search.type": "Property Type",
+    "search.price": "Price Range",
+    "search.bedrooms": "Bedrooms",
+    "search.bathrooms": "Bathrooms",
+    "search.area": "Area (sqm)",
+    "search.btn": "Search",
+    "search.advanced": "Advanced Search",
+
+    // Property Types
+    "type.apartment": "Apartment",
+    "type.house": "House",
+    "type.villa": "Villa",
+    "type.studio": "Studio",
+    "type.office": "Office",
+    "type.land": "Land",
+    "type.commercial": "Commercial",
+
+    // Property Status
+    "status.for_sale": "For Sale",
+    "status.for_rent": "For Rent",
+    "status.sold": "Sold",
+    "status.reserved": "Reserved",
+
+    // Property Details
+    "property.details": "Property Details",
+    "property.price": "Price",
+    "property.area": "Area",
+    "property.bedrooms": "Bedrooms",
+    "property.bathrooms": "Bathrooms",
+    "property.floor": "Floor",
+    "property.yearBuilt": "Year Built",
+    "property.address": "Address",
+    "property.location": "Location",
+    "property.features": "Features",
+    "property.amenities": "Amenities",
+    "property.description": "Description",
+    "property.gallery": "Gallery",
+    "property.map": "Map",
+    "property.agent": "Contact Agent",
+    "property.schedule": "Schedule Viewing",
+    "property.inquire": "Make Inquiry",
+    "property.share": "Share",
+    "property.save": "Save",
+    "property.print": "Print",
+    "property.sq": "sq.m",
+    "property.perSq": "per sq.m",
+
+    // Locations
+    "location.sofia": "Sofia",
+    "location.plovdiv": "Plovdiv",
+    "location.varna": "Varna",
+    "location.burgas": "Burgas",
+    "location.ruse": "Ruse",
+    "location.veliko_tarnovo": "Veliko Tarnovo",
+    "location.bansko": "Bansko",
+    "location.sunny_beach": "Sunny Beach",
+    "location.golden_sands": "Golden Sands",
+
+    // About
+    "about.title": "About Us",
+    "about.subtitle": "Your Trusted Real Estate Partner in Bulgaria",
+    "about.description1":
+      "We are a leading real estate agency specializing in Bulgarian properties. With over 15 years of experience, we have helped thousands of clients find their perfect home or investment property.",
+    "about.description2":
+      "Our team consists of highly trained professionals who are dedicated to providing exceptional service. We offer a wide range of properties including apartments, houses, villas, and commercial spaces across Bulgaria.",
+    "about.mission": "Our Mission",
+    "about.vision": "Our Vision",
+    "about.values": "Our Values",
+    "about.stats.properties": "Properties Listed",
+    "about.stats.clients": "Happy Clients",
+    "about.stats.cities": "Cities Covered",
+    "about.stats.years": "Years Experience",
+
+    // Contact
+    "contact.title": "Contact Us",
+    "contact.subtitle": "Get in Touch with Our Team",
+    "contact.name": "Your Name",
+    "contact.email": "Email Address",
+    "contact.phone": "Phone Number",
+    "contact.subject": "Subject",
+    "contact.message": "Message",
+    "contact.send": "Send Message",
+    "contact.info": "Contact Information",
+    "contact.address": "Address",
+    "contact.phone_num": "Phone",
+    "contact.email_addr": "Email",
+    "contact.working": "Working Hours",
+    "contact.success": "Message sent successfully!",
+
+    // Footer
+    "footer.about": "About Company",
+    "footer.properties": "Properties",
+    "footer.services": "Services",
+    "footer.support": "Support",
+    "footer.legal": "Legal",
+    "footer.privacy": "Privacy Policy",
+    "footer.terms": "Terms of Service",
+    "footer.copyright": "All rights reserved.",
+    "footer.newsletter": "Subscribe to Newsletter",
+    "footer.newsletter_placeholder": "Enter your email",
+    "footer.subscribe": "Subscribe",
+
+    // Common
+    "common.loading": "Loading...",
+    "common.error": "An error occurred",
+    "common.no_results": "No properties found",
+    "common.view_all": "View All",
+    "common.read_more": "Read More",
+    "common.learn_more": "Learn More",
+    "common.back": "Back",
+    "common.next": "Next",
+    "common.previous": "Previous",
+    "common.showing": "Showing",
+    "common.of": "of",
+    "common.results": "results",
+    "common.sorted_by": "Sorted by",
+    "common.newest": "Newest",
+    "common.price_low": "Price: Low to High",
+    "common.price_high": "Price: High to Low",
+    "common.popular": "Popular",
+
+    // Currency
+    "currency.bgn": "BGN",
+    "currency.eur": "EUR",
+    "currency.usd": "USD",
+  },
+  bg: {
+    // Navigation
+    "nav.home": "Начало",
+    "nav.properties": "Имоти",
+    "nav.buy": "Купува",
+    "nav.rent": "Наема",
+    "nav.sell": "Продава",
+    "nav.about": "За нас",
+    "nav.contact": "Контакти",
+    "nav.blog": "Блог",
+    "nav.agents": "Нашите агенти",
+    "nav.login": "Вход",
+    "nav.register": "Регистрация",
+
+    // Hero Section
+    "hero.title": "Намерете Вашата Мечтана Имот в България",
+    "hero.subtitle":
+      "Открийте най-добрите възможности за недвижими имоти в България с нашия обширен портфейл от имоти",
+    "hero.cta": "Търси Имоти",
+    "hero.featured": "Препоръчани Имоти",
+
+    // Search
+    "search.placeholder": "Търсете по локация, тип имот...",
+    "search.location": "Локация",
+    "search.type": "Тип Имот",
+    "search.price": "Ценови диапазон",
+    "search.bedrooms": "Спални",
+    "search.bathrooms": "Бани",
+    "search.area": "Площ (кв.м)",
+    "search.btn": "Търси",
+    "search.advanced": "Разширено Търсене",
+
+    // Property Types
+    "type.apartment": "Апартамент",
+    "type.house": "Къща",
+    "type.villa": "Вила",
+    "type.studio": "Студио",
+    "type.office": "Офис",
+    "type.land": "Парцел",
+    "type.commercial": "Търговски",
+
+    // Property Status
+    "status.for_sale": "Продава се",
+    "status.for_rent": "Отдава се под наем",
+    "status.sold": "Продаден",
+    "status.reserved": "Резервиран",
+
+    // Property Details
+    "property.details": "Детайли за Имота",
+    "property.price": "Цена",
+    "property.area": "Площ",
+    "property.bedrooms": "Спални",
+    "property.bathrooms": "Бани",
+    "property.floor": "Етаж",
+    "property.yearBuilt": "Година на строителство",
+    "property.address": "Адрес",
+    "property.location": "Локация",
+    "property.features": "Характеристики",
+    "property.amenities": "Удобства",
+    "property.description": "Описание",
+    "property.gallery": "Галерия",
+    "property.map": "Карта",
+    "property.agent": "Контакт с агент",
+    "property.schedule": "Запитване за оглед",
+    "property.inquire": "Изпрати запитване",
+    "property.share": "Сподели",
+    "property.save": "Запази",
+    "property.print": "Принтирай",
+    "property.sq": "кв.м",
+    "property.perSq": "за кв.м",
+
+    // Locations
+    "location.sofia": "София",
+    "location.plovdiv": "Пловдив",
+    "location.varna": "Варна",
+    "location.burgas": "Бургас",
+    "location.ruse": "Русе",
+    "location.veliko_tarnovo": "Велико Търново",
+    "location.bansko": "Банско",
+    "location.sunny_beach": "Слънчев бряг",
+    "location.golden_sands": "Златни пясъци",
+
+    // About
+    "about.title": "За нас",
+    "about.subtitle": "Вашият доверен партньор в недвижимите имоти в България",
+    "about.description1":
+      "Ние сме водеща агенция за недвижими имоти, специализирана в български имоти. С над 15 години опит, ние сме помогнали на хиляди клиенти да намерят перфектния си дом или инвестиционен имот.",
+    "about.description2":
+      "Нашият екип се състои от висококвалифицирани професионалисти, посветени на предоставянето на изключително обслужване. Ние предлагаме широка гама от имоти, включително апартаменти, къщи, вили и търговски площи в цяла България.",
+    "about.mission": "Нашата мисия",
+    "about.vision": "Нашата визия",
+    "about.values": "Нашите ценности",
+    "about.stats.properties": "Имоти в списъка",
+    "about.stats.clients": "Доволни клиенти",
+    "about.stats.cities": "Покрити градове",
+    "about.stats.years": "Години опит",
+
+    // Contact
+    "contact.title": "Свържете се с нас",
+    "contact.subtitle": "Свържете се с нашия екип",
+    "contact.name": "Вашето име",
+    "contact.email": "Имейл адрес",
+    "contact.phone": "Телефонен номер",
+    "contact.subject": "Тема",
+    "contact.message": "Съобщение",
+    "contact.send": "Изпрати съобщение",
+    "contact.info": "Контактна информация",
+    "contact.address": "Адрес",
+    "contact.phone_num": "Телефон",
+    "contact.email_addr": "Имейл",
+    "contact.working": "Работно време",
+    "contact.success": "Съобщението е изпратено успешно!",
+
+    // Footer
+    "footer.about": "За компанията",
+    "footer.properties": "Имоти",
+    "footer.services": "Услуги",
+    "footer.support": "Поддръжка",
+    "footer.legal": "Правна информация",
+    "footer.privacy": "Политика за поверителност",
+    "footer.terms": "Условия за ползване",
+    "footer.copyright": "Всички права запазени.",
+    "footer.newsletter": "Абонирайте се за бюлетина",
+    "footer.newsletter_placeholder": "Въведете вашия имейл",
+    "footer.subscribe": "Абонирай се",
+
+    // Common
+    "common.loading": "Зареждане...",
+    "common.error": "Възникна грешка",
+    "common.no_results": "Не са намерени имоти",
+    "common.view_all": "Виж всички",
+    "common.read_more": "Прочетете още",
+    "common.learn_more": "Научете повече",
+    "common.back": "Назад",
+    "common.next": "Напред",
+    "common.previous": "Предишен",
+    "common.showing": "Показване",
+    "common.of": "от",
+    "common.results": "резултати",
+    "common.sorted_by": "Подредено по",
+    "common.newest": "Най-нови",
+    "common.price_low": "Цена: от ниска към висока",
+    "common.price_high": "Цена: от висока към ниска",
+    "common.popular": "Популярни",
+
+    // Currency
+    "currency.bgn": "лв.",
+    "currency.eur": "€",
+    "currency.usd": "$",
+  },
+};
+
+export const languages = [
+  { code: "en", name: "English", nativeName: "English", flag: "🇺🇸" },
+  { code: "bg", name: "Bulgarian", nativeName: "Български", flag: "🇧🇬" },
+];
