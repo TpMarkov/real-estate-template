@@ -14,20 +14,17 @@ const HomePage: React.FC = () => {
     {
       name: t("location.sofia"),
       properties: 150,
-      image:
-        "https://images.unsplash.com/photo-1562690868-60bbe7621e6c?w=400&h=300&fit=crop",
+      image: "https://img.capital.bg/shimg/zx1200y675_3934291.jpg",
     },
     {
       name: t("location.varna"),
       properties: 85,
-      image:
-        "https://images.unsplash.com/photo-1578582670800-87898d55a621?w=400&h=300&fit=crop",
+      image: "https://darikradio.bg/media/356/ttz-varna.m.jpg",
     },
     {
       name: t("location.plovdiv"),
       properties: 65,
-      image:
-        "https://images.unsplash.com/photo-1543066250-2a5d6c71a6e7?w=400&h=300&fit=crop",
+      image: "https://img.capital.bg/shimg/zx1200y675_3964872.jpg",
     },
     {
       name: t("location.bansko"),
