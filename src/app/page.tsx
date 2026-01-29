@@ -15,19 +15,19 @@ const HomePage: React.FC = () => {
       name: t("location.sofia"),
       properties: 150,
       image:
-        "https://images.unsplash.com/photo-1517950331316-94b194725d60?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1562690868-60bbe7621e6c?w=400&h=300&fit=crop",
     },
     {
       name: t("location.varna"),
       properties: 85,
       image:
-        "https://images.unsplash.com/photo-1548611635-b6e7827d7d4a?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1578582670800-87898d55a621?w=400&h=300&fit=crop",
     },
     {
       name: t("location.plovdiv"),
       properties: 65,
       image:
-        "https://images.unsplash.com/photo-1518415125773-0b77c21810b2?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1543066250-2a5d6c71a6e7?w=400&h=300&fit=crop",
     },
     {
       name: t("location.bansko"),
