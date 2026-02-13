@@ -15,9 +15,6 @@ const ContactPage: React.FC = () => {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  //TODO: Remove console.log
-  console.log("Testing something");
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
@@ -32,6 +29,7 @@ const ContactPage: React.FC = () => {
   ) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+  console.log("Testing");
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
