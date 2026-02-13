@@ -44,11 +44,11 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers: [
-          // Prevent clickjacking - allow embedding from specific domains
-          {
-            key: "X-Frame-Options",
-            value: "ALLOW-FROM https://webdevstuiohq.online",
-          },
+          // Remove X-Frame-Options - using CSP frame-ancestors instead (better browser support)
+          // {
+          //   key: "X-Frame-Options",
+          //   value: "ALLOW-FROM https://webdevstuiohq.online",
+          // },
           // Prevent MIME type sniffing
           {
             key: "X-Content-Type-Options",
@@ -80,7 +80,7 @@ const nextConfig = {
               "img-src 'self' data: https: blob:",
               "font-src 'self' data:",
               "connect-src 'self' https://www.google-analytics.com",
-              "frame-ancestors 'self' https://webdevstuiohq.online https://www.webdevstuiohq.online",
+              "frame-ancestors 'self' https://webdevstuiohq.online https://www.webdevstuiohq.online https://real-estate-template-gilt.vercel.app https://*.vercel.app",
               "base-uri 'self'",
               "form-action 'self'",
             ].join("; "),
