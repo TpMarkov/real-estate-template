@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion } from "framer-motion";
+import { siteConfig } from "@/lib/siteConfig";
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
@@ -26,10 +27,12 @@ const Footer: React.FC = () => {
     ],
   };
 
+  const subscribeText = t("subscribe");
+
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    <footer className="bg-gray-900 text-white" role="contentinfo">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           {/* Brand & Newsletter */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -38,91 +41,120 @@ const Footer: React.FC = () => {
             className="space-y-6"
           >
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">BP</span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-primary-700">
+                <span className="text-xl font-bold text-white">BP</span>
               </div>
               <span className="font-display text-xl font-bold">
                 Bulgarian Properties
               </span>
             </div>
-            <p className="text-gray-400 text-sm">{t("hero.subtitle")}</p>
-            <div>
-              <p className="text-sm font-medium mb-3">
+            <p className="text-sm text-gray-400">{t("hero.subtitle")}</p>
+            <div className="w-full">
+              <p className="mb-3 text-sm font-medium">
                 {t("footer.newsletter")}
               </p>
-              <div className="flex flex-col sm:flex-row gap-2">
+              <form
+                className="flex w-full flex-col gap-2"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <label htmlFor="newsletter-email" className="sr-only">
+                  Email address for newsletter
+                </label>
                 <input
+                  id="newsletter-email"
                   type="email"
                   placeholder={t("footer.newsletter_placeholder")}
-                  className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary-500"
+                  className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                  aria-label="Email for newsletter"
                 />
-                <button className="bg-primary-600 hover:bg-primary-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                  {t("subscribe")}
+                <button
+                  type="submit"
+                  className="w-full rounded-lg bg-primary-600 px-4 py-2 text-sm font-medium transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-900 sm:w-auto"
+                >
+                  {subscribeText}
                 </button>
-              </div>
+              </form>
             </div>
           </motion.div>
 
           {/* Properties Links */}
-          <motion.div
+          <motion.nav
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
+            aria-labelledby="footer-properties-heading"
           >
-            <h3 className="font-semibold text-lg mb-4">
+            <h3
+              id="footer-properties-heading"
+              className="mb-4 text-lg font-semibold"
+            >
               {t("footer.properties")}
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-3" role="list">
               {footerLinks.properties.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="rounded text-gray-400 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </motion.nav>
 
           {/* Company Links */}
-          <motion.div
+          <motion.nav
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
+            aria-labelledby="footer-company-heading"
           >
-            <h3 className="font-semibold text-lg mb-4">{t("footer.about")}</h3>
-            <ul className="space-y-4">
+            <h3
+              id="footer-company-heading"
+              className="mb-4 text-lg font-semibold"
+            >
+              {t("footer.about")}
+            </h3>
+            <ul className="space-y-3" role="list">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="rounded text-gray-400 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </motion.nav>
 
           {/* Contact Info */}
-          <motion.div
+          <motion.address
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
+            aria-labelledby="footer-contact-heading"
+            className="not-italic"
           >
-            <h3 className="font-semibold text-lg mb-4">{t("contact.info")}</h3>
-            <ul className="space-y-4 text-gray-400">
+            <h3
+              id="footer-contact-heading"
+              className="mb-4 text-lg font-semibold"
+            >
+              {t("contact.info")}
+            </h3>
+            <ul className="space-y-3 text-gray-400" role="list">
               <li className="flex items-start space-x-3">
                 <svg
-                  className="w-5 h-5 mt-0.5 flex-shrink-0"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
+                  aria-hidden="true"
                 >
                   <path
                     fillRule="evenodd"
@@ -130,49 +162,68 @@ const Footer: React.FC = () => {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span>123 Vitosha Boulevard, Sofia 1000, Bulgaria</span>
+                {/* TODO: Replace with client contact details */}
+                <span className="text-sm">{siteConfig.contact.address}</span>
               </li>
               <li className="flex items-center space-x-3">
                 <svg
-                  className="w-5 h-5 flex-shrink-0"
+                  className="h-5 w-5 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
+                  aria-hidden="true"
                 >
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a2 2 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
-                <span>+359 888 123 456</span>
+                {/* TODO: Replace with client contact details */}
+                <a
+                  href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
+                  className="rounded text-sm transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                >
+                  {siteConfig.contact.phone}
+                </a>
               </li>
               <li className="flex items-center space-x-3">
                 <svg
-                  className="w-5 h-5 flex-shrink-0"
+                  className="h-5 w-5 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
+                  aria-hidden="true"
                 >
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
-                <span>info@bulgarianproperties.com</span>
+                {/* TODO: Replace with client contact details */}
+                <a
+                  href={`mailto:${siteConfig.contact.email}`}
+                  className="rounded text-sm transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                >
+                  {siteConfig.contact.email}
+                </a>
               </li>
             </ul>
-          </motion.div>
+          </motion.address>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-gray-400 text-sm">
-            © 2024 Bulgarian Properties. {t("footer.copyright")}
+        <div className="mt-12 flex flex-col items-center justify-between space-y-4 border-t border-gray-800 pt-8 md:flex-row md:space-y-0">
+          <p className="text-center text-sm text-gray-400 md:text-left">
+            © {new Date().getFullYear()} {siteConfig.name}.{" "}
+            {t("footer.copyright")}
           </p>
-          <div className="flex space-x-6">
-            {footerLinks.legal.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-400 hover:text-white text-sm transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          <nav aria-label="Legal links">
+            <ul className="flex space-x-6" role="list">
+              {footerLinks.legal.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="rounded text-sm text-gray-400 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
     </footer>

@@ -4,3 +4,5 @@ export { default as PropertyCard } from "./PropertyCard";
 export { default as SearchBar } from "./SearchBar";
 export { default as Hero } from "./Hero";
 export { default as FeaturedProperties } from "./FeaturedProperties";
+export { default as GoogleAnalytics } from "./GoogleAnalytics";
+export * from "./JsonLd";

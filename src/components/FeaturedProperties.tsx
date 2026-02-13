@@ -134,7 +134,7 @@ const featuredPropertiesData: Property[] = [
       email: "dimitar.stoyanov@example.com",
       phone: "+359 887 345 678",
       photo:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop",
       bio: { en: "Commercial expert", bg: "Търговски експерт" },
       languages: ["English", "Bulgarian"],
       properties: 52,
@@ -150,29 +150,29 @@ const FeaturedProperties: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-gray-50 py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="mb-12 text-center"
         >
-          <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">
+          <span className="text-sm font-semibold uppercase tracking-wider text-primary-600">
             {t("hero.featured")}
           </span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2 mb-4">
+          <h2 className="mb-4 mt-2 font-display text-3xl font-bold text-gray-900 md:text-4xl">
             {t("hero.featured")} {t("properties")}
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-gray-600">
             Discover our handpicked selection of premium properties across
             Bulgaria's most desirable locations.
           </p>
         </motion.div>
 
         {/* Property Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {featuredPropertiesData.map((property, index) => (
             <motion.div
               key={property.id}
@@ -192,15 +192,15 @@ const FeaturedProperties: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="text-center mt-12"
+          className="mt-12 text-center"
         >
           <Link
             href="/properties"
-            className="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
+            className="inline-flex items-center rounded-lg bg-primary-600 px-8 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
           >
             {t("common.view_all")} {t("properties")}
             <svg
-              className="w-5 h-5 ml-2"
+              className="ml-2 h-5 w-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
