@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+console.log("Testing");
+
 const nextConfig = {
   reactStrictMode: true,
 
