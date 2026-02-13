@@ -1,5 +1,7 @@
-"use client";
+import type { Metadata } from "next";
+import ContactPageClient from "./ContactPageClient";
 
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
@@ -300,6 +302,20 @@ const ContactPage: React.FC = () => {
       </div>
     </div>
   );
+=======
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Get in touch with Bulgarian Properties. Our experienced team is ready to help you find your perfect property in Bulgaria.",
+  openGraph: {
+    title: "Contact Us | Bulgarian Properties",
+    description:
+      "Get in touch with Bulgarian Properties. Our experienced team is ready to help you find your perfect property in Bulgaria.",
+    type: "website",
+  },
+>>>>>>> 37df41bf41bdbd7801166336ac1af18aff8873cd
 };
 
-export default ContactPage;
+export default function ContactPage() {
+  return <ContactPageClient />;
+}

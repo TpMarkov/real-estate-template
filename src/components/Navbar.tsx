@@ -28,13 +28,26 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+    <header
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 shadow-lg backdrop-blur-sm"
+          : "bg-white shadow-lg"
+      }`}
+    >
+      <nav
+        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+        aria-label="Main navigation"
+      >
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">BP</span>
+          <Link
+            href="/"
+            className="flex items-center space-x-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+            aria-label="Bulgarian Properties - Home"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-primary-700">
+              <span className="text-xl font-bold text-white">BP</span>
             </div>
             <span className="font-display text-2xl font-bold text-gray-900">
               Bulgarian Properties
@@ -42,26 +55,32 @@ const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <ul className="hidden items-center space-x-8 lg:flex" role="list">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-medium text-gray-700 hover:text-primary-500 transition-colors duration-200"
-              >
-                {link.label}
-              </Link>
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="rounded px-2 py-1 font-medium text-gray-700 transition-colors duration-200 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                >
+                  {link.label}
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
 
           {/* Language Selector & Mobile Menu */}
           <div className="flex items-center space-x-4">
             {/* Language Selector */}
             <div className="relative">
+              <label htmlFor="language-select" className="sr-only">
+                Select language
+              </label>
               <select
+                id="language-select"
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
-                className="appearance-none bg-transparent border border-gray-300 rounded-lg px-3 py-2 pr-8 text-sm font-medium cursor-pointer text-gray-700"
+                className="cursor-pointer appearance-none rounded-lg border border-gray-300 bg-transparent px-3 py-2 pr-8 text-sm font-medium text-gray-700 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                aria-label="Language selection"
               >
                 {availableLanguages.map((lang) => (
                   <option key={lang.code} value={lang.code}>
@@ -69,21 +88,28 @@ const Navbar: React.FC = () => {
                   </option>
                 ))}
               </select>
-              <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+              <div
+                className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-500"
+                aria-hidden="true"
+              >
                 ▼
               </div>
             </div>
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 rounded-lg text-gray-700"
+              className="rounded-lg p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 lg:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
               <svg
-                className="w-6 h-6"
+                className="h-6 w-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 {isMobileMenuOpen ? (
                   <path
@@ -104,33 +130,35 @@ const Navbar: React.FC = () => {
             </button>
           </div>
         </div>
-      </div>
+      </nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t"
+            className="border-t bg-white lg:hidden"
           >
-            <div className="px-4 py-4 space-y-3">
+            <ul className="space-y-3 px-4 py-4" role="list">
               {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="block rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </header>
   );
 };
 
