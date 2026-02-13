@@ -53,32 +53,40 @@ const SearchBar: React.FC = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
-      className="bg-white rounded-2xl shadow-xl p-6 -mt-16 relative z-10 mx-4 lg:mx-auto max-w-6xl"
+      className="relative z-10 mx-4 -mt-8 max-w-6xl rounded-2xl bg-white p-4 shadow-xl sm:mx-auto sm:-mt-16 sm:p-6 lg:mx-auto"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {/* Query Input */}
-        <div className="lg:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+        <div className="sm:col-span-2 lg:col-span-2">
+          <label
+            htmlFor="search-query"
+            className="mb-2 block text-sm font-medium text-gray-700"
+          >
             {t("search.placeholder")}
           </label>
           <input
+            id="search-query"
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search properties..."
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
           />
         </div>
 
         {/* Property Type */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label
+            htmlFor="property-type"
+            className="mb-2 block text-sm font-medium text-gray-700"
+          >
             {t("search.type")}
           </label>
           <select
+            id="property-type"
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
           >
             {propertyTypes.map((pt) => (
               <option key={pt.value} value={pt.value}>
@@ -90,13 +98,17 @@ const SearchBar: React.FC = () => {
 
         {/* Location */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label
+            htmlFor="property-location"
+            className="mb-2 block text-sm font-medium text-gray-700"
+          >
             {t("search.location")}
           </label>
           <select
+            id="property-location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
           >
             {locations.map((loc) => (
               <option key={loc.value} value={loc.value}>
@@ -110,13 +122,14 @@ const SearchBar: React.FC = () => {
         <div className="flex items-end">
           <button
             onClick={handleSearch}
-            className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2"
+            className="flex w-full items-center justify-center space-x-2 rounded-lg bg-primary-600 py-3 font-semibold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
           >
             <svg
-              className="w-5 h-5"
+              className="h-5 w-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -131,10 +144,10 @@ const SearchBar: React.FC = () => {
       </div>
 
       {/* Status Tabs */}
-      <div className="flex space-x-2 mt-4 pt-4 border-t">
+      <div className="mt-4 flex flex-wrap gap-2 border-t pt-4 sm:space-x-2">
         <button
           onClick={() => setStatus("for_sale")}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+          className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 ${
             status === "for_sale"
               ? "bg-primary-600 text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -144,7 +157,7 @@ const SearchBar: React.FC = () => {
         </button>
         <button
           onClick={() => setStatus("for_rent")}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+          className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 ${
             status === "for_rent"
               ? "bg-primary-600 text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -154,7 +167,7 @@ const SearchBar: React.FC = () => {
         </button>
         <button
           onClick={() => router.push("/properties")}
-          className="px-4 py-2 rounded-lg text-sm font-medium text-primary-600 hover:bg-primary-50 transition-colors ml-auto"
+          className="rounded-lg px-4 py-2 text-sm font-medium text-primary-600 transition-colors hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 sm:ml-auto"
         >
           {t("search.advanced")} →
         </button>

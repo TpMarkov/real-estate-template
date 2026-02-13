@@ -149,7 +149,7 @@ const allProperties: Property[] = [
       email: "dimitar.stoyanov@example.com",
       phone: "+359 887 345 678",
       photo:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop",
       bio: { en: "Commercial expert", bg: "Търговски експерт" },
       languages: ["English", "Bulgarian"],
       properties: 52,
@@ -284,7 +284,7 @@ const allProperties: Property[] = [
       email: "dimitar.stoyanov@example.com",
       phone: "+359 887 345 678",
       photo:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop",
       bio: { en: "Commercial expert", bg: "Търговски експерт" },
       languages: ["English", "Bulgarian"],
       properties: 52,
@@ -329,7 +329,7 @@ const allProperties: Property[] = [
       email: "dimitar.stoyanov@example.com",
       phone: "+359 887 345 678",
       photo:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop",
       bio: { en: "Commercial expert", bg: "Търговски експерт" },
       languages: ["English", "Bulgarian"],
       properties: 52,
@@ -419,7 +419,7 @@ const allProperties: Property[] = [
       email: "dimitar.stoyanov@example.com",
       phone: "+359 887 345 678",
       photo:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop",
       bio: { en: "Commercial expert", bg: "Търговски експерт" },
       languages: ["English", "Bulgarian"],
       properties: 52,
