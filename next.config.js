@@ -44,10 +44,10 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers: [
-          // Prevent clickjacking
+          // Prevent clickjacking - allow embedding from specific domains
           {
             key: "X-Frame-Options",
-            value: "DENY",
+            value: "ALLOW-FROM https://webdevstuiohq.online",
           },
           // Prevent MIME type sniffing
           {
@@ -80,7 +80,7 @@ const nextConfig = {
               "img-src 'self' data: https: blob:",
               "font-src 'self' data:",
               "connect-src 'self' https://www.google-analytics.com",
-              "frame-ancestors 'none'",
+              "frame-ancestors 'self' https://webdevstuiohq.online https://www.webdevstuiohq.online",
               "base-uri 'self'",
               "form-action 'self'",
             ].join("; "),
